@@ -12,7 +12,7 @@ class GameOfLife:
         self.running = False
         self.grid = [[0 for _ in range(GRID_WIDTH)] for _ in range(GRID_HEIGHT)]
 
-        self.canvas = tk.Canvas(master, width=CELL_SIZE*GRID_WIDTH, height=CELL_SIZE*GRID_HEIGHT, bg="red")
+        self.canvas = tk.Canvas(master, width=CELL_SIZE*GRID_WIDTH, height=CELL_SIZE*GRID_HEIGHT, bg="black")
         self.canvas.pack()
 
         self.canvas.bind("<Button-1>", self.toggle_cell)
