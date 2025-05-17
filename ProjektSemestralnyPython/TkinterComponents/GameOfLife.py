@@ -56,7 +56,7 @@ class GameOfLife:
                     y1 = y * CELL_SIZE
                     x2 = x1 + CELL_SIZE
                     y2 = y1 + CELL_SIZE
-                    self.canvas.create_rectangle(x1, y1, x2, y2, fill="black")
+                    self.canvas.create_rectangle(x1, y1, x2, y2, fill="red")
 
     def next_generation(self):
         new_grid = [[0 for _ in range(GRID_WIDTH)] for _ in range(GRID_HEIGHT)]
