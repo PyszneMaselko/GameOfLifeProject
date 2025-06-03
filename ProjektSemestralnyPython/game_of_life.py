@@ -5,6 +5,7 @@ import random
 import customtkinter as ctk
 
 class GameOfLife:
+
     def __init__(self, master):
         self.master = master
         self.is_running = False
@@ -27,8 +28,7 @@ class GameOfLife:
         self.bottom_panel = ctk.CTkFrame(master)
         self.bottom_panel.pack(side=ctk.BOTTOM, fill=ctk.X)
 
-        self.sidebar = ctk.CTkFrame(main_frame)
-        self.sidebar.pack(side=ctk.RIGHT, fill=ctk.Y)
+        self.sidebar = sidebar(main_frame, self.insert_pattern)
 
         self.start_button = ctk.CTkButton(self.bottom_panel, text="Start", command=self.toggle_running)
         self.start_button.pack(side=ctk.LEFT, padx=5, pady=5)
@@ -39,23 +39,12 @@ class GameOfLife:
         self.randomize_button = ctk.CTkButton(self.bottom_panel, text="Randomize", command=self.randomize_grid)
         self.randomize_button.pack(side=ctk.LEFT, padx=5, pady=5)
 
-        self.speed_slider = create_speed_slider(self.bottom_panel, self.delay, self.change_speed)
-
-        self.add_pattern_buttons()
+        self.speed_slider = speed_slider(self.bottom_panel, self.delay, self.change_speed)
 
         self.screen.bind("<Button-1>", self.draw_on_click)
         self.screen.bind("<B1-Motion>", self.draw_while_dragging)
         self.screen.bind("<Button-3>", self.clear_on_click)
         self.screen.bind("<B3-Motion>", self.clear_while_dragging)
-
-    def add_pattern_buttons(self):
-        label = ctk.CTkLabel(self.sidebar, text="Examples:", font=("Arial", 14))
-        label.pack(pady=10)
-
-        ctk.CTkButton(self.sidebar, text="Glider", command=self.place_glider).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="LWSS", command=self.place_lwss).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="Pulsar", command=self.place_pulsar).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="xd", command=self.place_xd).pack(pady=2)
 
     def draw_on_click(self, event):
         x = event.x // CELL_SIZE
