@@ -46,6 +46,19 @@ class GameOfLife:
         self.screen.bind("<Button-3>", self.clear_on_click)
         self.screen.bind("<B3-Motion>", self.clear_while_dragging)
 
+
+    def add_pattern_buttons(self):
+        label = ctk.CTkLabel(self.sidebar, text="Examples:", font=("Arial", 14))
+        label.pack(pady=10)
+
+        ctk.CTkButton(self.sidebar, text="Glider", command=self.place_glider).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="LWSS", command=self.place_lwss).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="Pulsar", command=self.place_pulsar).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="xd", command=self.place_xd).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="gosper glider gun", command=self.place_gosper_glider_gun_pattern).pack(pady=2)
+
+
+
     def draw_on_click(self, event):
         x = event.x // CELL_SIZE
         y = event.y // CELL_SIZE
@@ -159,6 +172,9 @@ class GameOfLife:
 
     def place_xd(self):
         self.insert_pattern(xd_pattern)
+
+    def place_gosper_glider_gun_pattern(self):
+        self.insert_pattern(gosper_glider_gun_pattern)
 
 
 ctk.set_appearance_mode("dark")
