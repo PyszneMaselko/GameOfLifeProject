@@ -1,1 +1,0 @@
-from .GameOfLife import GameOfLife
