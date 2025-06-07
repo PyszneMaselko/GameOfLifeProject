@@ -40,7 +40,7 @@ class Accordion(ctk.CTkFrame):
             panel.pack(padx=10, pady=2, fill=ctk.X)
 
             ctk.CTkLabel(panel, text=title, font=("Arial", 12, "bold")).pack(anchor="w")
-            ctk.CTkButton(panel, text="Dodaj", command=lambda p=pattern: self.insert_pattern_func(p)).pack(anchor="e",
+            ctk.CTkButton(panel, text="Add", command=lambda p=pattern: self.insert_pattern_func(p)).pack(anchor="e",
                                                                                                            pady=2)
 
         self.category_frames[cat_name] = frame

@@ -1,8 +1,10 @@
 from config import *
 from components import *
+from patterns import *
 import random
 import customtkinter as ctk
 import tkinter as tk
+
 
 class GameOfLife:
     def __init__(self, parent, grid_width, grid_height, bg_color, draw_color):
@@ -11,7 +13,8 @@ class GameOfLife:
         self.bg_color = bg_color
         self.draw_color = draw_color
         self.master = parent
-        self.master.protocol("WM_DELETE_WINDOW", self.on_close)  # kończy funkcje .after która domyślnie działa po zamknieciu aplikacji
+        self.master.protocol("WM_DELETE_WINDOW",
+                             self.on_close)  # kończy funkcje .after która domyślnie działa po zamknieciu aplikacji
         self._after_id = None
         self.is_running = False
         self.delay = DEFAULT_DELAY
@@ -19,8 +22,6 @@ class GameOfLife:
 
         main_frame = ctk.CTkFrame(parent)
         main_frame.pack(fill=ctk.BOTH, expand=True)
-        print(f"bg_color used for canvas: {bg_color} (type: {type(bg_color)})")
-        print(f"draw_color used for canvas: {draw_color} (type: {type(draw_color)})")
 
         self.screen = tk.Canvas(
             main_frame,
@@ -67,11 +68,11 @@ class GameOfLife:
         label = ctk.CTkLabel(self.sidebar, text="Examples:", font=("Arial", 14))
         label.pack(pady=10)
 
-        ctk.CTkButton(self.sidebar, text="Glider", command=self.place_glider).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="LWSS", command=self.place_lwss).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="Pulsar", command=self.place_pulsar).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="xd", command=self.place_xd).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="gosper glider gun", command=self.place_gosper_glider_gun_pattern).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="Glider", command=place_glider).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="LWSS", command=place_lwss).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="Pulsar", command=place_pulsar).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="xd", command=place_xd).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="gosper glider gun", command=place_gosper_glider_gun_pattern).pack(pady=2)
 
     def draw_on_click(self, event):
         x = event.x // CELL_SIZE
@@ -175,21 +176,6 @@ class GameOfLife:
                 self.grid[y][x] = 1
         self.draw_grid()
 
-    def place_glider(self):
-        self.insert_pattern(glider_pattern)
-
-    def place_lwss(self):
-        self.insert_pattern(lwss_pattern)
-
-    def place_pulsar(self):
-        self.insert_pattern(pulsar_pattern)
-
-    def place_xd(self):
-        self.insert_pattern(xd_pattern)
-
-    def place_gosper_glider_gun_pattern(self):
-        self.insert_pattern(gosper_glider_gun_pattern)
-
     def reset_board(self, new_width, new_height):
         self.grid_width = new_width
         self.grid_height = new_height
@@ -200,6 +186,3 @@ class GameOfLife:
             height=CELL_SIZE * self.grid_height
         )
         self.draw_grid()
-
-ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("blue")

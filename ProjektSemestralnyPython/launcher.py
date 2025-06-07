@@ -3,15 +3,15 @@ from game_of_life import GameOfLife
 from new_game_window import NewGameWindow
 from config import *
 
+
 def run_app():
     root = ctk.CTk()
     root.withdraw()  # ukrywa główne okno na początku
-    root.geometry("1920x1080")
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x = (screen_width - WINDOW_WIDTH) // 2
     y = (screen_height - WINDOW_HEIGHT) // 2
-    root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT-75}+{x}+{y}")
+    root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT - 75}+{x}+{y}")
 
     def start_game(width, height, bg_color, draw_color):
         root.deiconify()  # pokazuje główne okno
