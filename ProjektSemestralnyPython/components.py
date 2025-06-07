@@ -1,11 +1,9 @@
 import customtkinter as ctk
 from patterns import *
 
-def speed_slider(parent, initial_value, function):
-    slider = ctk.CTkSlider(parent, from_=1000, to=10, number_of_steps=40, command=function)
 
-def create_speed_slider(parent, initial_value, callback):
-    slider = ctk.CTkSlider(parent, from_=1000, to=1, number_of_steps=40, command=callback)
+def speed_slider(parent, initial_value, function):
+    slider = ctk.CTkSlider(parent, from_=1000, to=1, number_of_steps=40, command=function)
     slider.set(initial_value)
     slider.pack(side=ctk.LEFT, padx=10)
 
@@ -13,6 +11,7 @@ def create_speed_slider(parent, initial_value, callback):
     label.pack(side=ctk.LEFT)
 
     return slider
+
 
 class Accordion(ctk.CTkFrame):
     def __init__(self, parent, categories, insert_pattern_func):
@@ -23,13 +22,13 @@ class Accordion(ctk.CTkFrame):
         self.expanded_category = None
 
         for cat_name, patterns in categories.items():
-            self._add_category(cat_name, patterns)
+            self.add_category(cat_name, patterns)
 
-    def _add_category(self, cat_name, patterns):
+    def add_category(self, cat_name, patterns):
         category_container = ctk.CTkFrame(self)
         category_container.pack(fill=ctk.X, pady=(10, 5))
 
-        header = ctk.CTkButton(category_container, text=cat_name, command=lambda c=cat_name: self._toggle_category(c))
+        header = ctk.CTkButton(category_container, text=cat_name, command=lambda c=cat_name: self.pick_category(c))
         header.pack(fill=ctk.X)
 
         frame = ctk.CTkFrame(category_container, fg_color="#333", corner_radius=8)
@@ -46,7 +45,7 @@ class Accordion(ctk.CTkFrame):
 
         self.category_frames[cat_name] = frame
 
-    def _toggle_category(self, cat_name):
+    def pick_category(self, cat_name):
         if self.expanded_category == cat_name:
             # zwijamy jeśli jest już rozwinięta
             self.category_frames[cat_name].pack_forget()
@@ -77,6 +76,9 @@ def sidebar(parent, insert_pattern_func):
         "Oscylatory": [
             ("Pulsar", pulsar_pattern),
             # ("Blinker", blinker_pattern)
+        ],
+        "Breedery": [
+            ("gosper glider gun pattern", gosper_glider_gun_pattern)
         ],
         "Eksperymentalne": [
             ("XD", xd_pattern)
