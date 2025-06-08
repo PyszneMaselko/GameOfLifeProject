@@ -54,14 +54,7 @@ class GameOfLife:
         self.screen.bind("<Button-3>", self.clear_on_click)
         self.screen.bind("<B3-Motion>", self.clear_while_dragging)
 
-    def on_close(self):
-        self.is_running = False
-        if self._after_id is not None:
-            try:
-                self.master.after_cancel(self._after_id)
-            except:
-                pass
-        self.master.destroy()
+
 
     def add_pattern_buttons(self):
         label = ctk.CTkLabel(self.sidebar, text="Examples:", font=("Arial", 14))

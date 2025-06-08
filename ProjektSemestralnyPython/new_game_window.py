@@ -85,8 +85,8 @@ class NewGameWindow(ctk.CTkToplevel):
     def load_config(self):
         if not os.path.exists("saved_config.json"):
             # Ustaw wartości domyślne, jeśli plik nie istnieje
-            self.bg_color = "#FFFFFF"
-            self.draw_color = "#000000"
+            self.bg_color = DEFAULT_BG_COLOR
+            self.draw_color = DEFAULT_DRAW_COLOR
             return
 
         try:
@@ -101,8 +101,8 @@ class NewGameWindow(ctk.CTkToplevel):
         except (json.JSONDecodeError, ValueError, KeyError) as e:
             print(f"Błąd podczas ładowania konfiguracji: {e}")
             # Ustaw wartości domyślne na wypadek błędu
-            self.bg_color = "#FFFFFF"
-            self.draw_color = "#000000"
+            self.bg_color = DEFAULT_BG_COLOR
+            self.draw_color = DEFAULT_DRAW_COLOR
 
     # domyslny wybór koloru
     # ==========================================
