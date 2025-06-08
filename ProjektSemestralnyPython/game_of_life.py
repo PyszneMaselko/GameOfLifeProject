@@ -174,14 +174,3 @@ class GameOfLife:
             if 0 <= x < self.grid_width and 0 <= y < self.grid_height:
                 self.grid[y][x] = 1
         self.draw_grid()
-
-    def reset_board(self, new_width, new_height):
-        self.grid_width = new_width
-        self.grid_height = new_height
-        self.grid = [[0 for _ in range(self.grid_width)] for _ in range(self.grid_height)]
-
-        self.screen.config(
-            width=CELL_SIZE * self.grid_width,
-            height=CELL_SIZE * self.grid_height
-        )
-        self.draw_grid()
