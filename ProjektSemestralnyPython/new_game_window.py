@@ -6,7 +6,7 @@ from config import *
 class NewGameWindow(ctk.CTkToplevel):
     def __init__(self, master, start_game_callback):
         super().__init__(master)
-        self.title("Nowa gra")
+        self.title("Game of Life")
 
         self.update_idletasks()
         screen_width = self.winfo_screenwidth()

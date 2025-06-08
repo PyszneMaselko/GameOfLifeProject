@@ -13,8 +13,7 @@ class GameOfLife:
         self.bg_color = bg_color
         self.draw_color = draw_color
         self.master = parent
-        self.master.protocol("WM_DELETE_WINDOW",
-                             self.on_close)  # kończy funkcje .after która domyślnie działa po zamknieciu aplikacji
+        #self.master.protocol("WM_DELETE_WINDOW", self.on_close)  # kończy funkcje .after która domyślnie działa po zamknieciu aplikacji
         self._after_id = None
         self.is_running = False
         self.delay = DEFAULT_DELAY
@@ -72,7 +71,7 @@ class GameOfLife:
         ctk.CTkButton(self.sidebar, text="LWSS", command=place_lwss).pack(pady=2)
         ctk.CTkButton(self.sidebar, text="Pulsar", command=place_pulsar).pack(pady=2)
         ctk.CTkButton(self.sidebar, text="xd", command=place_xd).pack(pady=2)
-        ctk.CTkButton(self.sidebar, text="gosper glider gun", command=place_gosper_glider_gun_pattern).pack(pady=2)
+        ctk.CTkButton(self.sidebar, text="Gosper glider gun", command=place_gosper_glider_gun_pattern).pack(pady=2)
 
     def draw_on_click(self, event):
         x = event.x // CELL_SIZE
