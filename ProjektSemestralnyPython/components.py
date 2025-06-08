@@ -33,7 +33,7 @@ class Accordion(ctk.CTkFrame):
 
         frame = ctk.CTkFrame(category_container, fg_color="#333", corner_radius=8)
         frame.pack(fill=ctk.X, padx=10, pady=(5, 10))
-        frame.pack_forget()  # ukryj na start
+        frame.pack_forget()
 
         for title, pattern in patterns:
             panel = ctk.CTkFrame(frame)
@@ -47,22 +47,17 @@ class Accordion(ctk.CTkFrame):
 
     def pick_category(self, cat_name):
         if self.expanded_category == cat_name:
-            # zwijamy jeśli jest już rozwinięta
             self.category_frames[cat_name].pack_forget()
             self.expanded_category = None
         else:
-            # zwijamy poprzednią
             if self.expanded_category:
                 self.category_frames[self.expanded_category].pack_forget()
-            # rozwijamy nową
             self.category_frames[cat_name].pack(fill=ctk.X)
             self.expanded_category = cat_name
 
 
-# Przykład użycia w sidebar:
-
 def sidebar(parent, insert_pattern_func):
-    sidebar = ctk.CTkFrame(parent)
+    sidebar = ctk.CTkFrame(parent, width=500)
     sidebar.pack(side=ctk.RIGHT, fill=ctk.Y)
 
     label = ctk.CTkLabel(sidebar, text="Examples:", font=("Arial", 14))
@@ -75,7 +70,6 @@ def sidebar(parent, insert_pattern_func):
         ],
         "Oscylatory": [
             ("Pulsar", pulsar_pattern),
-            # ("Blinker", blinker_pattern)
         ],
         "Breedery": [
             ("gosper glider gun pattern", gosper_glider_gun_pattern)

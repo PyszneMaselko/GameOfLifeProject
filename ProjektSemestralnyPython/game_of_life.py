@@ -13,7 +13,7 @@ class GameOfLife:
         self.bg_color = bg_color
         self.draw_color = draw_color
         self.master = parent
-        #self.master.protocol("WM_DELETE_WINDOW", self.on_close)  # kończy funkcje .after która domyślnie działa po zamknieciu aplikacji
+        #self.master.protocol("WM_DELETE_WINDOW", self.on_close)
         self._after_id = None
         self.is_running = False
         self.delay = DEFAULT_DELAY
@@ -53,15 +53,6 @@ class GameOfLife:
         self.screen.bind("<B1-Motion>", self.draw_while_dragging)
         self.screen.bind("<Button-3>", self.clear_on_click)
         self.screen.bind("<B3-Motion>", self.clear_while_dragging)
-
-    def on_close(self):
-        self.is_running = False
-        if self._after_id is not None:
-            try:
-                self.master.after_cancel(self._after_id)
-            except:
-                pass
-        self.master.destroy()
 
     def add_pattern_buttons(self):
         label = ctk.CTkLabel(self.sidebar, text="Examples:", font=("Arial", 14))

@@ -6,7 +6,7 @@ from config import *
 
 def run_app():
     root = ctk.CTk()
-    root.withdraw()  # ukrywa główne okno na początku
+    root.withdraw()
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x = (screen_width - WINDOW_WIDTH) // 2
@@ -14,7 +14,7 @@ def run_app():
     root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT - 75}+{x}+{y}")
 
     def start_game(width, height, bg_color, draw_color):
-        root.deiconify()  # pokazuje główne okno
+        root.deiconify()
         game = GameOfLife(root, grid_width=width, grid_height=height, bg_color=bg_color, draw_color=draw_color)
         game.update()
         #root.protocol("WM_DELETE_WINDOW", game.on_close)

@@ -18,17 +18,13 @@ class NewGameWindow(ctk.CTkToplevel):
 
         self.callback = start_game_callback
 
-        # self.bg_color = DEFAULT_BG_COLOR  # domyślny kolor tła
-        # self.draw_color = DEFAULT_DRAW_COLOR  # domyślny kolor rysowania
-        self.configure(fg_color=DEFAULT_FRAME_COLOR)  # kolor okna
+        self.configure(fg_color=DEFAULT_FRAME_COLOR)
 
         self.load_config()
-        print(f"BGc: {self.bg_color}")
-        print(f"DRAWc: {self.draw_color}")
 
         button_frame = ctk.CTkFrame(self)
         button_frame.place(relx=0.5, rely=0.5, anchor="center")
-        button_frame.configure(fg_color=DEFAULT_FRAME_COLOR)  # kolor button_frame
+        button_frame.configure(fg_color=DEFAULT_FRAME_COLOR)
 
         self.start_button = ctk.CTkButton(button_frame, text="Start", command=self.start)
         self.start_button.pack(pady=(0, 10))
@@ -41,7 +37,7 @@ class NewGameWindow(ctk.CTkToplevel):
                                                command=self.choose_draw_color)
         self.draw_color_button.pack()
 
-    # wybor uzywajac CTkColorPicker
+
     def choose_draw_color(self):
         picker = AskColor(
             width=400,
@@ -84,8 +80,7 @@ class NewGameWindow(ctk.CTkToplevel):
 
     def load_config(self):
         if not os.path.exists("saved_config.json"):
-            # Ustaw wartości domyślne, jeśli plik nie istnieje
-            self.bg_color = "#FFFFFF"
+            self.bg_color = "#A0A0A0"
             self.draw_color = "#000000"
             return
 
@@ -96,12 +91,11 @@ class NewGameWindow(ctk.CTkToplevel):
                     raise ValueError("Plik jest pusty")
 
                 colors = json.loads(content)
-                self.bg_color = colors.get("bg_color", "#FFFFFF")
+                self.bg_color = colors.get("bg_color", "#A0A0A0")
                 self.draw_color = colors.get("draw_color", "#000000")
         except (json.JSONDecodeError, ValueError, KeyError) as e:
-            print(f"Błąd podczas ładowania konfiguracji: {e}")
-            # Ustaw wartości domyślne na wypadek błędu
-            self.bg_color = "#FFFFFF"
+            print(f"Config Failed: {e}")
+            self.bg_color = "#A0A0A0"
             self.draw_color = "#000000"
 
     # domyslny wybór koloru
