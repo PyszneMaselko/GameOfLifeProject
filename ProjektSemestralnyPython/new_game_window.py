@@ -4,11 +4,14 @@ from config import *
 import json
 import os
 
+
 class NewGameWindow(ctk.CTkToplevel):
     def __init__(self, master, start_game_callback):
         super().__init__(master)
         self.title("Game of Life")
 
+        self.draw_color = None
+        self.bg_color = None
         self.update_idletasks()
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
@@ -36,7 +39,6 @@ class NewGameWindow(ctk.CTkToplevel):
         self.draw_color_button = ctk.CTkButton(button_frame, text="Draw color", fg_color=self.draw_color,
                                                command=self.choose_draw_color)
         self.draw_color_button.pack()
-
 
     def choose_draw_color(self):
         picker = AskColor(
@@ -68,7 +70,6 @@ class NewGameWindow(ctk.CTkToplevel):
             self.bg_color = color
             self.bg_color_button.configure(fg_color=color)
 
-
     def save_config(self):
         colors = {
             "bg_color": self.bg_color,
@@ -88,11 +89,11 @@ class NewGameWindow(ctk.CTkToplevel):
             with open("saved_config.json", "r", encoding="utf-8") as file:
                 content = file.read().strip()
                 if not content:
-                    raise ValueError("Plik jest pusty")
+                    raise ValueError("File is empty")
 
                 colors = json.loads(content)
-                self.bg_color = colors.get("bg_color", "#A0A0A0")
-                self.draw_color = colors.get("draw_color", "#000000")
+                self.bg_color = colors.get("bg_color", DEFAULT_BG_COLOR)
+                self.draw_color = colors.get("draw_color", DEFAULT_DRAW_COLOR)
         except (json.JSONDecodeError, ValueError, KeyError) as e:
             print(f"Config Failed: {e}")
             self.bg_color = DEFAULT_BG_COLOR
@@ -122,5 +123,5 @@ class NewGameWindow(ctk.CTkToplevel):
             self.destroy()
             self.callback(DEFAULT_GRID_WIDTH, DEFAULT_GRID_HEIGHT, self.bg_color, self.draw_color)
             self.save_config()
-        except ValueError:
-            print("Niepoprawne dane.")
+        except ValueError as e:
+            print(e)

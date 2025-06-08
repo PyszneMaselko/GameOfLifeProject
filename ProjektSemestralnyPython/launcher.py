@@ -17,7 +17,6 @@ def run_app():
         root.deiconify()
         game = GameOfLife(root, grid_width=width, grid_height=height, bg_color=bg_color, draw_color=draw_color)
         game.update()
-        #root.protocol("WM_DELETE_WINDOW", game.on_close)
 
     NewGameWindow(root, start_game)
 

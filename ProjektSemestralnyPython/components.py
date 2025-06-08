@@ -64,17 +64,17 @@ def sidebar(parent, insert_pattern_func):
     label.pack(pady=10)
 
     categories = {
-        "Stateczniki": [
+        "Spaceships": [
             ("Glider", glider_pattern),
             ("LWSS", lwss_pattern)
         ],
-        "Oscylatory": [
+        "Oscillators": [
             ("Pulsar", pulsar_pattern),
         ],
-        "Breedery": [
-            ("gosper glider gun pattern", gosper_glider_gun_pattern)
+        "Breeders": [
+            ("Gosper glider gun pattern", gosper_glider_gun_pattern)
         ],
-        "Eksperymentalne": [
+        "Experimental": [
             ("XD", xd_pattern)
         ]
     }

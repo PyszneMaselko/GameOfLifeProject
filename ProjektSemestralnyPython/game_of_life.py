@@ -13,7 +13,6 @@ class GameOfLife:
         self.bg_color = bg_color
         self.draw_color = draw_color
         self.master = parent
-        #self.master.protocol("WM_DELETE_WINDOW", self.on_close)
         self._after_id = None
         self.is_running = False
         self.delay = DEFAULT_DELAY
